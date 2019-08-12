@@ -106,7 +106,7 @@ setupkernel(){
 
 change_hosts(){
 cd $bash_path
-num=0
+num=1
 #rm -rf ./new_hostname_list.config
 #touch ./new_hostname_list.config
 for host in ${hostip[@]}
@@ -127,7 +127,7 @@ done
 
 rootssh_trust(){
 cd $bash_path
-num=0
+num=1
 for host in ${hostip[@]}
 do
 let num+=1
@@ -200,7 +200,7 @@ init_k8s(){
 	rm -rf /root/.kube
 	kubeadm reset -f
 	
-	kubeadm init --kubernetes-version=$k8s_version --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address=$masterip
+	kubeadm init --kubernetes-version=$k8s_version --pod-network-cidr=$cluster_network --apiserver-advertise-address=$masterip
 	
 	mkdir -p /root/.kube
 	cp /etc/kubernetes/admin.conf /root/.kube/config
