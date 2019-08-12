@@ -222,7 +222,7 @@ rm -rf ./token_shar_value.text
 
 install_flannel(){
 	wget https://raw.githubusercontent.com/coreos/flannel/bc79dd1505b0c8681ece4de4c0d86c5cd2643275/Documentation/kube-flannel.yml
-  sed -i "s/10.244.0.0\/16/$cluster_network/g" kube-flannel.yml
+  sed -i "s/10.244.0.0\/16/192.168.1.0\/24/g" kube-flannel.yml
 	kubectl apply -f kube-flannel.yml
 }
 
